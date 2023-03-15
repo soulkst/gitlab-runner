@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  gitlab-runner:
+    image: soulkst/gitlab-runner:latest
+    container_name: gitlab-runner
+    depends_on:
+      - docker-dind
+    environment:
+      TZ: Asia/Seoul
+      REGISTRATION_TOKEN: $REGISTRATION_TOKEN
+      CI_SERVER_URL: $CI_SERVER_URL
+      RUNNER_EXECUTOR: docker
+      CLONE_URL: $CLONE_URL
+      DOCKER_HOST: tcp://docker-dind:2375
+      DOCKER_IMAGE: "*"
+    volumes:
+      - ~/workspace/docker/share/tmp/gitlab-ruuner-config.toml:/etc/gitlab-runner/config.toml
+
+  docker-dind:
+    image: docker:dind-rootless
+    container_name: docker-dind-rootless
+    privileged: true
+    volumes:
+      - /var/run/docker.socket:/var/run/docker.socket
+    environment:
+      - DOCKER_TLS_CERTDIR=
