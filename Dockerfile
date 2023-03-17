@@ -3,8 +3,9 @@ FROM gitlab/gitlab-runner:v15.9.1
 RUN echo "#!/bin/bash" | tee /ext-entrypoint > /dev/null
 
 RUN echo "\n \
+#!/bin/bash \n \
 CONFIG_TOML=\"/etc/gitlab-runner/config.toml\" \n \
-if [ ! -s \$CONFIG_TOML ] || [ $(grep '\[\[runners\]\]' $CONFIG_TOML) = 0 ] ; \n \
+if [ ! -s \$CONFIG_TOML ] || [ \$(grep '\[\[runners\]\]' \$CONFIG_TOML | wc -l ) -eq 0 ] ; \n \
 then \n \
   gitlab-runner register -n \n \
 fi \n" | tee -a /ext-entrypoint > /dev/null
