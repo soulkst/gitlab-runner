@@ -7,6 +7,7 @@
 
 ## About
 - Added auto register script
+- Pre install latest docker
 - [Using CLI Environment](Environement.md)
 - Tested version [15.9.1](https://hub.docker.com/layers/gitlab/gitlab-runner/v15.9.1/images/sha256-d493cf2a81455696e4e754b9ef6e8418f6ebe2e432b704bd00d140431bdbe0e9?context=explore)
 

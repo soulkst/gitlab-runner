@@ -1,5 +1,6 @@
 FROM gitlab/gitlab-runner:v15.9.1
 
+RUN curl -fSsL https://get.docker.com | sh
 RUN echo "#!/bin/bash" | tee /ext-entrypoint > /dev/null
 
 RUN echo "\n \
